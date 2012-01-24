@@ -119,8 +119,9 @@ module Paperclip
       post_process(*@options[:only_process]) if post_processing
 
       # Reset the file size if the original file was reprocessed.
-      instance_write(:file_size,   @queued_for_write[:original].size.to_i)
-      instance_write(:fingerprint, generate_fingerprint(@queued_for_write[:original])) if stores_fingerprint
+      # NOTE: Commented out to prevent a bug
+      # instance_write(:file_size,   @queued_for_write[:original].size.to_i)
+      # instance_write(:fingerprint, generate_fingerprint(@queued_for_write[:original])) if stores_fingerprint
     ensure
       uploaded_file.close if close_uploaded_file
     end
